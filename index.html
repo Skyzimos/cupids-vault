@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Play - Frosty Fortune</title>
+    <title>Swagstakes - Play - Frosty Fortune</title>
     <style>
         /* --- BODY & BASE --- */
         body {
@@ -225,13 +225,26 @@
             margin-top: 10px;
             justify-content: center;
         }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.85rem;
+            margin-top: 50px;
+            opacity: 0.7;
+        }
+
+        a {
+            text-decoration: underline;
+            color: #000;
+        }
     </style>
 </head>
 
 <body>
     <img class="logo" src="/frosty-fortune/FrostyFortuneLogo.png">
     <div class="card">
-        <p class="lead">Enter your <b>First Name</b> + <b>Last Initial</b><br>Then press "Play," and scratch the ticket
+        <p class="lead">Enter your <b>First Name</b> + <b>Last Initial (e.g. "Alex D")</b><br>Then press "Play," and
+            scratch the ticket
             to reveal your
             fortune!</p>
 
@@ -258,14 +271,23 @@
             </div>
         </div>
 
-        <div class="result" id="result">Tip: Make sure your name matches exactly - only the exact spelling counts!</div>
+        <div class="result" id="result">Double check your name before playing.</div>
 
-        <div class="small"><b>No purchase to play.</b><br>Must be 13 years or older to play.<br>One play per device.
-            Results are final. Names and unique device identifiers are recorded.<br>Prizes are awarded at the sole
-            discretion of
-            the organizer. No prize is guaranteed.<br>Prizes awarded as a result of a system glitch will not be honored.
+        <div class="small">
+            <b>No purchase to play.</b>
+            <br>
+            Must be 13 years or older to play.
+            <br>
+            One play per device.
+            Results are final.
+            <br>
+            <a href="/frosty-fortune/tos">View Full Terms of Service</a> · <a href="/frosty-fortune/privacy">Privacy Policy</a>
         </div>
     </div>
+
+    <p class="footer-note">
+        © 2025 Swagstakes — All Rights Reserved · <a href="/frosty-fortune/privacy">Privacy Policy</a> · <a href="/frosty-fortune">Contact</a>
+    </p>
 
     <script>
         const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyS_R2QqwZLn2FOiE--l_Y4_oL_i-JbyYsPAzeWh0IxZaplYelTJf0lpejK-d93-FcJ/exec';
@@ -336,7 +358,7 @@
                     alert('Name already played. Contact admin for further assistance.');
                     resultBox.innerHTML = 'Name already played. (err. 400)';
                     setTimeout(async () => {
-                        resultBox.innerHTML = 'Tip: Make sure your name matches exactly - only the exact spelling counts!';
+                        resultBox.innerHTML = 'Double check your name before playing.';
                     }, 2000);
                     playBtn.disabled = false;
                     firstNameInput.disabled = false;
