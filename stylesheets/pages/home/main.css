@@ -61,7 +61,7 @@ body {
     background-size: cover;
     background-position: 30% center;
     background-repeat: no-repeat;
-    filter: contrast(110%) brightness(105%) saturate(105%);
+    filter: contrast(110%) brightness(105%) saturate(115%);
 
     will-change: transform; /* GPU Acceleration */
 }
