@@ -1,275 +1,58 @@
 <!doctype html>
-<html lang="en">
+<html lang='en'>
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Swagstakes - Play - Frosty Fortune</title>
-    <style>
-        /* --- BODY & BASE --- */
-        body {
-            width: 100%;
-            min-height: 100vh;
-            overflow-x: hidden;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            color: #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            margin: 0;
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width,initial-scale=1' />
+    <title>Swagstakes - Play - Cupid's Vault</title>
 
-            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.5)),
-                url('/frosty-fortune/6322028.jpg');
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
+    <script id='_styles' type='application/json'>
+        [
+          "/cupids-vault/stylesheets/pages/home/main.css",
+          "/cupids-vault/stylesheets/pages/home/animations.css"
+        ]
+    </script>
 
-        .logo {
-            width: 100%;
-            z-index: 10000;
-        }
+    <!-- -+-+-+- GLOBAL FRAMEWORK -+-+-+- -->
+    <script src='/cupids-vault/scripts/framework.js'></script>
 
-        /* --- CARD --- */
-        .card {
-            width: 80%;
-            max-width: 520px;
-            background: #fff;
-            border-radius: 18px;
-            padding: 24px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-            border: 2px solid #B4EDF6;
-            text-align: center;
-        }
+    <!-- -+-+-+- GLOBAL FASTFLAGS -+-+-+- -->
+    <script src='/cupids-vault/scripts/fastflags.js'></script>
 
-        h1 {
-            margin: 0 0 10px;
-            font-size: 24px;
-            color: #c21c3b;
-            font-weight: 700;
-        }
-
-        p.lead {
-            margin: 0 0 16px;
-            color: #555;
-            font-size: 14px;
-        }
-
-        /* --- FORM --- */
-        .form-row {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-
-        input[type="text"] {
-            flex: 1 1 0;
-            min-width: 0;
-            text-indent: 12px;
-            border-radius: 12px;
-            border: 1px solid #B4EDF6;
-            font-size: 16px;
-        }
-
-        input#firstNameInput,
-        input#lastInitialInput {
-            text-transform: capitalize;
-        }
-
-        button {
-            padding: 12px 18px;
-            border-radius: 12px;
-            border: none;
-            background: #0B476F;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-size: 1rem;
-            color: #fff;
-            cursor: pointer;
-            transition: transform 0.1s, box-shadow 0.2s;
-            z-index: 99999;
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .small {
-            font-size: 9px;
-            color: #999;
-        }
-
-        .small>b {
-            font-size: 12px;
-            color: #666;
-        }
-
-        /* --- TICKET --- */
-        .ticket {
-            border-radius: 20px;
-            padding: 24px;
-            background: linear-gradient(145deg, #fefefe, #e0f7fa);
-            border: 2px solid #4acfea;
-            margin-top: 24px;
-            margin-bottom: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12), inset 0 2px 4px rgba(255, 255, 255, 0.5);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .ticket:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15), inset 0 2px 4px rgba(255, 255, 255, 0.5);
-        }
-
-        .ticket .top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .ticket .top .small {
-            font-size: 12px;
-            color: #555;
-            font-weight: 500;
-        }
-
-        .scratch-wrap {
-            position: relative;
-            height: 180px;
-            border-radius: 16px;
-            background: linear-gradient(180deg, #ffffff, #d6f0f8);
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 12px;
-            padding: 16px;
-            justify-items: center;
-            align-items: center;
-            border: 2px dashed #4acfea;
-            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.05);
-            touch-action: none;
-        }
-
-        .scratch-cell {
-            width: 70px;
-            height: 70px;
-            background: #ffffff;
-            border-radius: 14px;
-            font-size: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            user-select: none;
-            border: 2px solid #b2ebf2;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .scratch-cell:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .scratch-cell canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 14px;
-            z-index: 2;
-        }
-
-        .result {
-            margin-top: 14px;
-            margin-bottom: 10px;
-            min-height: 40px;
-            font-weight: 600;
-            font-size: 16px;
-            color: #0b476f;
-            background: #e0f7fa;
-            border-radius: 12px;
-            padding: 8px 12px;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            gap: 5px;
-        }
-
-        /* Loader */
-        .loader {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            border: 2px solid rgba(0, 0, 0, 0.15);
-            border-top-color: #0b476f;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .check-row {
-            display: none;
-            gap: 8px;
-            margin-top: 10px;
-            justify-content: center;
-        }
-
-        .footer-note {
-            text-align: center;
-            font-size: 0.85rem;
-            margin-top: 50px;
-            opacity: 0.7;
-        }
-
-        a {
-            text-decoration: underline;
-            color: #000;
-        }
-    </style>
+    <!-- -+-+-+- CORE MODULES -+-+-+- -->
+    <script src='/cupids-vault/scripts/framework/core/fetch.js'></script>
+    <script src='/cupids-vault/scripts/framework/core/stylesheets.js'></script>
 </head>
 
 <body>
-    <img class="logo" src="/frosty-fortune/FrostyFortuneLogo.png">
-    <div class="card">
-        <p class="lead">Enter your <b>First Name</b> + <b>Last Initial (e.g. "Alex D")</b><br>Then press "Play," and
-            scratch the ticket
+    <div class='background'></div>
+    <img class='logo' src='/cupids-vault/media/logo/logo.png'>
+    <div class='_content'>
+        <p class='_directions'>Enter your <b>First Name</b> + <b>Last Initial (e.g. "Alex D")</b><br>Then press "Play,"
+            and
+            click "Spin"
             to reveal your
-            fortune!</p>
+            treasure!</p>
 
-        <div id="entryBlock">
-            <div class="form-row">
-                <input id="firstNameInput" type="text" placeholder='First Name' maxlength="20">
-                <input id="lastInitialInput" type="text" placeholder='Last Initial' maxlength="1">
-                <button id="playBtn">Play</button>
+        <div id='_contentNameContainer'>
+            <div class='_contentNameContainerRow'>
+                <input id='input_firstName' type='text' placeholder='First Name' maxlength='20'>
+                <input id='input_lastInitial' type='text' placeholder='Last Initial' maxlength='1'>
+                <button id='_playButton'>Play</button>
             </div>
         </div>
 
-        <div id="ticket" class="ticket" style="display:none">
-            <div class="scratch-wrap" id="scratchWrap">
-                <!-- Cells generated by JS -->
-            </div>
-
-            <div id="checkBlock" style="display:none" class="check-row">
-                <input id="checkName" type="text" placeholder="Enter name to check (same as played)" />
-                <button id="checkBtn">Check</button>
+        <div id='_contentGameContainer' class='_contentGameContainer'>
+            <div class='_contentGameContainerWrapper' id='_contentGameContainerWrapper'>
+                <img class='_contentGameWheel' src='/cupids-vault/media/wheel/wheel.png'>
+                <img class='_contentGameWheelSpinButton' src='/cupids-vault/media/wheel/button.png'>
+                <img class='_contentGameWheelCarrot' src='/cupids-vault/media/wheel/carrot.png'>
             </div>
         </div>
 
-        <div class="result" id="result">Double check your name before playing.</div>
+        <div class='_contentResult' id='_contentResult'>Double check your name before playing.</div>
 
-        <div class="small">
+        <div class='_textSmall'>
             <b>No purchase to play.</b>
             <br>
             Must be 13 years or older to play.
@@ -277,189 +60,17 @@
             One play per person.
             Results are final.
             <br>
-            <a href="/frosty-fortune/tos">View Full Terms of Service</a> · <a href="/frosty-fortune/privacy">Privacy
+            <a href='/cupids-vault/directory/tos/'>View Full Terms of Service</a> · <a href='/cupids-vault/directory/privacy/'>Privacy
                 Policy</a>
         </div>
     </div>
 
-    <p class="footer-note">
-        © 2025 Swagstakes — All Rights Reserved · <a href="/frosty-fortune/privacy">Privacy Policy</a> · <a
-            href="/frosty-fortune">Contact</a>
+    <p class='_footerNotice'>
+        © 2026 Swagstakes — All Rights Reserved · <a href='/cupids-vault/directory/privacy/'>Privacy Policy</a> · <a
+            href='/cupids-vault/directory/tos/'>Terms</a>
     </p>
 
-    <script>
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxeO6YH2O9GRnmbuiE_mLw7suqdEvKUMc1IK06HSxaiYJ1EVb333D1hWUFB8W_zD_5b/exec';
-        const LOCAL_STORAGE_KEY = 'swag-ff-play';
-
-        const firstNameInput = document.getElementById('firstNameInput');
-        const lastInitialInput = document.getElementById('lastInitialInput');
-        const playBtn = document.getElementById('playBtn');
-        const ticket = document.getElementById('ticket');
-        const scratchWrap = document.getElementById('scratchWrap');
-        const resultBox = document.getElementById('result');
-        const checkBlock = document.getElementById('checkBlock');
-        const checkName = document.getElementById('checkName');
-        const checkBtn = document.getElementById('checkBtn');
-
-        const EMOJIS = ["🎄", "🎁", "🦃", "⛄", "🍪", "🔔", "🦌"];
-        let serverVerdict = null;
-        let hasPlayed = false;
-
-        const playedData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-        if (playedData) {
-            let msg = '';
-            if (playedData.result === 'win') {
-                msg = `You already played on this device, <b>${playedData.name}</b>.<br>🎉 <b>You WON! Your code:</b> <code style="background:#fff;padding:2px 6px;color:#111">${playedData.claimCode}</code>`;
-            } else if (playedData.result === 'lose') {
-                msg = `You already played on this device, <b>${playedData.name}</b>.<br>😅 <b>You did not win this time.</b>`;
-            } else {
-                msg = `You already played on this device, <b>${playedData.name}</b>.`;
-            }
-            document.getElementById('entryBlock').innerHTML = `<div style="padding:12px;margin-bottom: 10px;background:#F0F4F5;border-radius:8px;color:#111">${msg}</div>`;
-            resultBox.style.display = 'none';
-        }
-
-        playBtn.addEventListener('click', async () => {
-            const first = firstNameInput.value.trim();
-            const last = lastInitialInput.value.trim();
-
-            if (!/^[A-Za-z]+$/.test(first)) {
-                alert("Enter a valid first name (letters only).");
-                return;
-            }
-            if (!/^[A-Za-z]$/.test(last)) {
-                alert("Enter a single last initial (A-Z).");
-                return;
-            }
-
-            const name = `${first.charAt(0).toUpperCase()}${first.slice(1).toLowerCase()} ${last.toUpperCase()}`;
-            if (!name) { alert("Enter First name + Last initial"); return; }
-            if (localStorage.getItem(LOCAL_STORAGE_KEY)) { alert("Already played"); return; }
-
-            playBtn.disabled = true;
-            firstNameInput.disabled = true;
-            lastInitialInput.disabled = true;
-            resultBox.innerHTML = 'Contacting server... <span class="loader"></span>';
-
-            let deviceId = localStorage.getItem('swag-ff-device_id');
-            if (!deviceId) { deviceId = 'dev-' + Math.random().toString(36).slice(2, 10); localStorage.setItem('swag-ff-device_id', deviceId); }
-
-            try {
-                const params = new URLSearchParams({ action: 'play', name, deviceId });
-                const resp = await fetch(APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    body: params
-                });
-                const json = await resp.json();
-                if (json.error === 'name_already_played') {
-                    alert('Name already played. Contact admin for further assistance.');
-                    resultBox.innerHTML = 'Name already played. (err. 400)';
-                    setTimeout(async () => {
-                        resultBox.innerHTML = 'Double check your name before playing.';
-                    }, 2000);
-                    playBtn.disabled = false;
-                    firstNameInput.disabled = false;
-                    lastInitialInput.disabled = false;
-                    firstNameInput.value = '';
-                    lastInitialInput.value = '';
-                    return;
-                }
-                serverVerdict = json;
-                const resultToSave = json.result === 'win' ? { result: 'win', claimCode: json.claimCode, name, deviceId } : { result: 'lose', name, deviceId };
-                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(resultToSave));
-                showGame();
-            } catch (e) {
-                console.error(e);
-                resultBox.innerHTML = 'Internal server error. (err. 402)';
-                playBtn.disabled = false;
-                firstNameInput.disabled = false;
-                lastInitialInput.disabled = false;
-            }
-        });
-
-        function showGame() {
-            ticket.style.display = 'block';
-            document.querySelector('.logo').style.width = '50%';
-            scratchWrap.innerHTML = '';
-            resultBox.innerHTML = 'Scratch the tiles! Match 3 to win!';
-
-            let chosenEmojis = [];
-
-            if (serverVerdict && serverVerdict.result === 'win') {
-                const winEmoji = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
-                chosenEmojis = [winEmoji, winEmoji, winEmoji];
-            } else {
-                let e1 = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
-                let e2;
-                do { e2 = EMOJIS[Math.floor(Math.random() * EMOJIS.length)]; } while (e2 === e1);
-                let e3 = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
-                chosenEmojis = [e1, e2, e3];
-            }
-
-            for (let i = 0; i < 3; i++) {
-                const cell = document.createElement('div');
-                cell.className = 'scratch-cell';
-                const span = document.createElement('span');
-                span.textContent = chosenEmojis[i];
-                span.style.opacity = 0;
-                span.style.transition = 'opacity 0.2s';
-                cell.appendChild(span);
-
-                const canvas = document.createElement('canvas');
-                cell.appendChild(canvas);
-                scratchWrap.appendChild(cell);
-
-                initCellScratch(cell, span, canvas);
-            }
-
-            checkBlock.style.display = 'none';
-            hasPlayed = true;
-        }
-
-        function initCellScratch(cell, span, canvas) {
-            canvas.width = cell.offsetWidth;
-            canvas.height = cell.offsetHeight;
-            const ctx = canvas.getContext('2d');
-            ctx.fillStyle = '#cfcfcf';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.globalCompositeOperation = 'destination-out';
-            ctx.lineWidth = 20;
-            ctx.lineCap = 'round';
-
-            let drawing = false, lastPos = null;
-            cell.addEventListener('pointerdown', e => { e.preventDefault(); drawing = true; lastPos = getPos(e, canvas); scratch(lastPos); });
-            cell.addEventListener('pointermove', e => { if (!drawing) return; e.preventDefault(); const p = getPos(e, canvas); lineTo(lastPos, p); lastPos = p; checkReveal(); });
-            cell.addEventListener('pointerup', e => { drawing = false; checkReveal(); });
-            cell.addEventListener('pointercancel', e => { drawing = false; checkReveal(); });
-            function getPos(e, c) { const r = c.getBoundingClientRect(); return { x: (e.clientX - r.left) * (c.width / r.width), y: (e.clientY - r.top) * (c.height / r.height) }; }
-            function scratch(p) { ctx.beginPath(); ctx.arc(p.x, p.y, ctx.lineWidth / 2, 0, 2 * Math.PI); ctx.fill(); }
-            function lineTo(prev, p) { ctx.beginPath(); ctx.moveTo(prev.x, prev.y); ctx.lineTo(p.x, p.y); ctx.stroke(); }
-            function checkReveal() {
-                const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                let cleared = 0;
-                for (let i = 3; i < img.data.length; i += 32) { if (img.data[i] === 0) cleared++; }
-                const pct = Math.round((cleared * 8) / (canvas.width * canvas.height) * 10000) / 100;
-                if (pct > 40) {
-                    canvas.style.opacity = 0;
-                    span.style.opacity = 1;
-                    const allRevealed = Array.from(document.querySelectorAll('.scratch-cell span'))
-                        .every(s => s.style.opacity == 1);
-                    if (allRevealed) checkWin();
-                }
-            }
-        }
-
-        function checkWin() {
-            const emojis = Array.from(document.querySelectorAll('.scratch-cell span')).map(s => s.textContent);
-            const win = emojis.every(e => e === emojis[0]);
-            if (win) {
-                resultBox.innerHTML = `🎉 JACKPOT!<br><b>Show this code to claim:</b> <code style="background:#fff;padding:2px 6px;color:#111">${serverVerdict.claimCode}</code>`;
-            } else {
-                resultBox.innerHTML = '😅 Not a match — better luck next time!';
-            }
-        }
-    </script>
+    <script src='/cupids-vault/scripts/pages/home/main.js'></script>
 </body>
 
 </html>
