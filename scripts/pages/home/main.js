@@ -32,7 +32,7 @@
 ----------------------------- */
 const Fetch = Framework.get('Fetch');
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyOlYd1whGKHICeIwa-3dFahfMMWmqD1jtAvzXlc79O0syvPYU2RnWkk78ls-LC7i0tTg/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNSr2YmhvMuIcTKlsEpgS6zCbUPgDjZxhq2RCeWIYSGAjeIoVtxb5E5ZXYSpgT2D1c1g/exec';
 const LOCAL_STORAGE_KEY = 'swag-cv-play';
 const DEVICE_ID_KEY = 'swag-cv-device_id';
 const SERVER_TESTING = false;

@@ -32,7 +32,7 @@
 ----------------------------- */
 const Fetch = Framework.get('Fetch');
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyOlYd1whGKHICeIwa-3dFahfMMWmqD1jtAvzXlc79O0syvPYU2RnWkk78ls-LC7i0tTg/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNSr2YmhvMuIcTKlsEpgS6zCbUPgDjZxhq2RCeWIYSGAjeIoVtxb5E5ZXYSpgT2D1c1g/exec';
 
 /* -----------------------------
         DOM REFERENCES
@@ -95,3 +95,8 @@ async function deleteUser() {
 
     console.log(json)
 }
+
+(async () => {
+    const json = await Fetch.get(APPS_SCRIPT_URL);
+    document.querySelector('.plays').innerHTML = json.plays;
+})();
