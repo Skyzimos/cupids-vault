@@ -32,7 +32,7 @@
 ----------------------------- */
 const Fetch = Framework.get('Fetch');
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxPF9Xk8sVtCdhpCohApuOe6CmmPxBsg0y6k4aVYQH-Bt40zyqcK-1sQ5iVsbdBBqE8cA/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyOlYd1whGKHICeIwa-3dFahfMMWmqD1jtAvzXlc79O0syvPYU2RnWkk78ls-LC7i0tTg/exec';
 
 /* -----------------------------
         DOM REFERENCES
